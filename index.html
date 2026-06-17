@@ -13,6 +13,10 @@
     -webkit-font-smoothing:antialiased;min-height:100vh;display:grid;place-items:center;text-align:center}
   .wrap{max-width:620px;padding:64px 22px}
   .brand{font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-size:34px}
+  .icon{width:116px;height:116px;border-radius:26px;display:block;margin:0 auto 18px;
+    box-shadow:0 10px 40px rgba(155,231,255,.20);border:1px solid var(--line)}
+  .teaser{width:100%;max-width:340px;margin:30px auto 8px;border-radius:18px;border:1px solid var(--line);
+    box-shadow:0 12px 48px rgba(0,0,0,.5);background:#000;display:block}
   p.tag{color:var(--text);font-size:18px;margin:10px 0 6px}
   p.sub{color:var(--dim);margin:0 0 34px}
   .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
@@ -24,10 +28,13 @@
 </head>
 <body>
   <main class="wrap">
+    <img class="icon" src="./app-icon.png" alt="Wanderkin app icon" width="116" height="116" />
     <div class="brand">Wanderkin</div>
     <p class="tag">Walk the real world. Wake the Kin.</p>
     <p class="sub">A step-powered creature collector — your steps awaken and raise spirit-beasts, then send
       them to push back the Hush.</p>
+    <video class="teaser" src="./Wanderteaser.mp4" poster="./app-icon.png"
+           autoplay muted loop playsinline controls preload="metadata"></video>
     <div class="links">
       <a class="btn" href="./privacy.html">Privacy Policy</a>
       <a class="btn" href="./support.html">Support</a>
