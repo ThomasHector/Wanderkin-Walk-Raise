@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wanderkin — Game Mechanics</title>
-<meta name="description" content="How Wanderkin battles work: the four classes, abilities and energy, positioning, echoes, and element synergy." />
+<title>Wanderkin — The Game</title>
+<meta name="description" content="What Wanderkin is and how it plays: the walk-to-collect loop, raising your Kin, team-building, and the battle systems — classes, energy, positioning, echoes, and element synergy." />
 <style>
   :root{
     --bg:#0e1116; --card:#161b22; --card2:#12161d; --line:#222b36;
@@ -58,6 +58,14 @@
        width:26px;height:26px;border-radius:50%;background:var(--gold);color:#10131a;font-weight:800;
        display:grid;place-items:center;font-size:14px}
   .closer{font-size:17px;color:var(--gold);text-align:center;margin:40px 0 0}
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 6px}
+  .shots figure{margin:0}
+  .shots img{width:100%;border-radius:16px;border:1px solid var(--line);
+       box-shadow:0 10px 30px rgba(0,0,0,.45);display:block}
+  .shots figcaption{color:var(--dim);font-size:13px;text-align:center;margin-top:9px}
+  .shot-single{display:block;margin:22px auto 4px;max-width:248px;width:100%;border-radius:18px;
+       border:1px solid var(--line);box-shadow:0 14px 40px rgba(0,0,0,.55)}
+  .step-tag{color:var(--cyan);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
   footer{margin-top:34px;color:var(--dim);font-size:13px;text-align:center}
   footer a{color:var(--dim)}
   a{color:var(--cyan);text-decoration:none}
@@ -72,9 +80,48 @@
       <span class="brand">Wanderkin</span>
     </div>
 
-    <h1>Game Mechanics</h1>
-    <p class="lede">Battles in Wanderkin play out on their own — your craft is the team you build beforehand.
-      Here's everything that decides a fight.</p>
+    <h1>The Game</h1>
+    <p class="lede">A cozy creature-collector powered by your real-world steps — what it is, how a session
+      flows, and then every system that decides a battle.</p>
+
+    <h2>What is Wanderkin?</h2>
+    <p>You are the <strong>Warden</strong> of a Sanctuary — a refuge for spirit-beasts called <strong>Kin</strong>.
+      As you go about your day, your real-world steps become <strong>Stride</strong>: a kinetic light that gathers
+      elemental <strong>Motes</strong>, hatches dormant Kin from their eggs, and turns up rare relics. You raise
+      the Kin you collect, assemble a team of six, and send them into automatic battles to push back the grey
+      <strong>Hush</strong> that has settled over the world.</p>
+    <p>Crucially, the game keeps pace with <em>you</em>. The more you walk, the more you gather — so a longer walk
+      simply means more to enjoy when you next sit down. There are no purchases, no timers, and no pressure to
+      open the app; it's a companion to the walking you'd do anyway.</p>
+
+    <div class="shots">
+      <figure><img src="./shot-discover.png" alt="Discovering a dormant Kin egg" loading="lazy" />
+        <figcaption>1 · Walk to discover &amp; hatch</figcaption></figure>
+      <figure><img src="./shot-awaken.png" alt="A Kin awakening" loading="lazy" />
+        <figcaption>2 · Awaken &amp; raise your Kin</figcaption></figure>
+      <figure><img src="./shot-battle.png" alt="Scouting a battle" loading="lazy" />
+        <figcaption>3 · Send your team to battle</figcaption></figure>
+    </div>
+
+    <h2>The loop</h2>
+    <p>Everything in Wanderkin feeds back on itself. One turn of the loop looks like this:</p>
+    <ol class="checklist">
+      <li><span class="step-tag">Walk</span><br><strong>Steps become Stride.</strong> Your real-world movement
+        fills your Stride — the energy that powers everything. No grinding, no waiting on timers.</li>
+      <li><span class="step-tag">Collect</span><br><strong>Hatch &amp; gather.</strong> Spend Stride to crack
+        open eggs and awaken new Kin, gather elemental Motes, and turn up Echo relics. More steps, more loot.</li>
+      <li><span class="step-tag">Raise</span><br><strong>Grow your Kin.</strong> Level, evolve, and bond with
+        them, and equip Echoes to shape how each one fights.</li>
+      <li><span class="step-tag">Build</span><br><strong>Pick your six.</strong> Assemble a team that balances
+        classes, an element core, positioning, and relics — the craft this page is mostly about.</li>
+      <li><span class="step-tag">Battle</span><br><strong>You plan, they fight.</strong> Send your team into
+        auto-resolved battles against the Hush. Winning earns more Stride, Motes, Echoes, and Kin…</li>
+      <li><span class="step-tag">Repeat, at your pace</span><br><strong>…which feeds straight back in.</strong>
+        Sessions are a few minutes — open, collect what your walk earned, raise and plan, run a fight, close.
+        A daily check-in gives a baseline even on rest days.</li>
+    </ol>
+    <div class="note">The rest of this page is the deep end — the systems that turn a pile of Kin into a team
+      that wins. None of it is required reading to enjoy the walk; it's here for when you want to theorycraft.</div>
 
     <h2>The four classes</h2>
     <p>Every Kin has a calling — a class that shapes how it behaves in a fight. A great team isn't six of the
@@ -110,6 +157,7 @@
     <div class="note">A reliable rule of thumb: one <strong>Vanguard</strong> to hold the line, a
       <strong>Warder</strong> to keep everyone alive, and <strong>Strikers</strong> or <strong>Mystics</strong>
       to do the damage.</div>
+    <img class="shot-single" src="./shot-team.png" alt="A team of Kin in the Sanctuary" loading="lazy" />
 
     <h2>Abilities &amp; energy</h2>
     <p>Each Kin brings three things to a fight.</p>
@@ -199,6 +247,7 @@
       <li><strong>Use matchups to tip close fights</strong> — a welcome edge, never your whole plan.</li>
     </ol>
 
+    <img class="shot-single" src="./shot-victory.png" alt="A victory screen" loading="lazy" />
     <p class="closer">Raise them well, Warden. The world is waiting to wake.</p>
 
     <footer>
