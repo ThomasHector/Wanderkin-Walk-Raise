@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wanderkin — Game Mechanics</title>
+<meta name="description" content="How Wanderkin battles work: the four classes, abilities and energy, positioning, echoes, and element synergy." />
+<style>
+  :root{
+    --bg:#0e1116; --card:#161b22; --card2:#12161d; --line:#222b36;
+    --text:#e6edf3; --dim:#8a93a2; --gold:#e9d8a6; --cyan:#9be7ff;
+    --vanguard:#7fb2ff; --striker:#ff9d6e; --warder:#7fe0a8; --mystic:#c79bff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:radial-gradient(1200px 700px at 50% -10%, rgba(155,231,255,.08), transparent 60%), var(--bg);
+    color:var(--text);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:34px 22px 96px}
+  .topnav{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
+  .back{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border:1px solid var(--line);
+        border-radius:12px;color:var(--text);text-decoration:none;background:var(--card);font-size:14px;
+        transition:border-color .15s,color .15s}
+  .back:hover{border-color:var(--cyan);color:#fff}
+  .brand{font-weight:800;letter-spacing:.12em;color:var(--gold);font-size:14px;text-transform:uppercase}
+  h1{font-size:32px;line-height:1.15;margin:6px 0 6px}
+  .lede{color:var(--text);font-size:17px;margin:0 0 8px;max-width:60ch}
+  h2{font-size:21px;margin:44px 0 12px;color:#fff;border-bottom:1px solid var(--line);padding-bottom:10px}
+  h3{font-size:16px;margin:22px 0 6px;color:var(--gold)}
+  p{margin:0 0 14px;color:#d4dbe4}
+  strong{color:#fff}
+  em{color:var(--cyan);font-style:normal}
+  ul{margin:0 0 16px;padding-left:20px}
+  li{margin:0 0 9px;color:#d4dbe4}
+  /* class cards */
+  .classes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0 6px}
+  .cls{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 6px;
+       border-top:3px solid var(--line)}
+  .cls h3{margin:0 0 8px;color:#fff;font-size:17px;display:flex;align-items:baseline;gap:9px}
+  .cls .role{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .cls.vanguard{border-top-color:var(--vanguard)} .cls.vanguard .role{color:var(--vanguard)}
+  .cls.striker{border-top-color:var(--striker)}   .cls.striker .role{color:var(--striker)}
+  .cls.warder{border-top-color:var(--warder)}     .cls.warder .role{color:var(--warder)}
+  .cls.mystic{border-top-color:var(--mystic)}     .cls.mystic .role{color:var(--mystic)}
+  .note{background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--gold);
+        border-radius:0 12px 12px 0;padding:14px 18px;margin:16px 0;color:#d4dbe4}
+  /* element wheel callout */
+  .wheel{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0}
+  .wheel .chain{font-size:17px;color:#fff;font-weight:600;letter-spacing:.01em;margin:0 0 6px}
+  .wheel .chain .x{color:var(--cyan)} .wheel .pair{color:var(--gold);font-weight:600}
+  .checklist{counter-reset:step;list-style:none;padding:0;margin:14px 0}
+  .checklist li{position:relative;padding:12px 12px 12px 52px;background:var(--card);border:1px solid var(--line);
+       border-radius:12px;margin:0 0 10px}
+  .checklist li::before{counter-increment:step;content:counter(step);position:absolute;left:14px;top:12px;
+       width:26px;height:26px;border-radius:50%;background:var(--gold);color:#10131a;font-weight:800;
+       display:grid;place-items:center;font-size:14px}
+  .closer{font-size:17px;color:var(--gold);text-align:center;margin:40px 0 0}
+  footer{margin-top:34px;color:var(--dim);font-size:13px;text-align:center}
+  footer a{color:var(--dim)}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  @media(max-width:560px){.classes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topnav">
+      <a class="back" href="./index.html">&larr; Back to home</a>
+      <span class="brand">Wanderkin</span>
+    </div>
+
+    <h1>Game Mechanics</h1>
+    <p class="lede">Battles in Wanderkin play out on their own — your craft is the team you build beforehand.
+      Here's everything that decides a fight.</p>
+
+    <h2>The four classes</h2>
+    <p>Every Kin has a calling — a class that shapes how it behaves in a fight. A great team isn't six of the
+      strongest Kin; it's the right blend of these four.</p>
+
+    <div class="classes">
+      <div class="cls vanguard">
+        <h3>Vanguard <span class="role">The wall</span></h3>
+        <p>Your front-line guardian. A Vanguard plants itself before the others and <em>pulls the enemy's
+          attention onto itself</em>, so the blows meant for your fragile Kin land on the one built to take
+          them. It also shrugs off a portion of every hit. A team without a Vanguard is a team whose back line
+          gets picked apart.</p>
+      </div>
+      <div class="cls striker">
+        <h3>Striker <span class="role">The blade</span></h3>
+        <p>Your damage. Strikers hit harder with their ordinary attacks and land critical blows more often.
+          They're how you actually finish enemies off — but they're not built to be hit, so they want a
+          Vanguard standing between them and the enemy.</p>
+      </div>
+      <div class="cls warder">
+        <h3>Warder <span class="role">The lifeline</span></h3>
+        <p>Your support. When a Warder heals or shields an ally, it does so far more generously than anyone
+          else could. One good Warder can keep a battered team standing long enough to turn a losing fight
+          around. On its own it can't win — but paired with the rest, it makes a team that refuses to fall.</p>
+      </div>
+      <div class="cls mystic">
+        <h3>Mystic <span class="role">The spellweaver</span></h3>
+        <p>Your caster. Mystics cast their signature abilities both <em>harder</em> and <em>more often</em> than
+          other Kin, because they gather power faster. When you want devastating special abilities going off
+          again and again, you want a Mystic.</p>
+      </div>
+    </div>
+    <div class="note">A reliable rule of thumb: one <strong>Vanguard</strong> to hold the line, a
+      <strong>Warder</strong> to keep everyone alive, and <strong>Strikers</strong> or <strong>Mystics</strong>
+      to do the damage.</div>
+
+    <h2>Abilities &amp; energy</h2>
+    <p>Each Kin brings three things to a fight.</p>
+    <h3>The basic attack</h3>
+    <p>Its everyday strike — what it does whenever it hasn't yet saved up for something greater.</p>
+    <h3>The signature ability</h3>
+    <p>The special move you'll recognize each Kin by — a heavy blow, a sweeping attack that hits the whole
+      enemy line, a healing surge, a protective shield. These cost <strong>energy</strong>, and here's the heart
+      of it: every Kin gathers a little energy each moment of battle, and the instant it has enough, it
+      unleashes its signature, then starts charging again. Heavier abilities take longer to come around;
+      cheaper ones fire often. Mystics charge faster than anyone — and certain relics can speed any Kin's
+      charge.</p>
+    <h3>The passive</h3>
+    <p>An ever-present trait that needs no energy. Some awaken the moment battle begins — a burst of speed, a
+      rallying buff to the whole team. Others answer grief: a Kin that grows fiercer each time an ally falls.
+      You don't trigger these; they simply happen, so factor them into who you bring.</p>
+
+    <h2>The battle line: positioning &amp; targeting</h2>
+    <p>Your six Kin stand in two rows — a <strong>front line</strong> and a <strong>back line</strong> — and
+      where a Kin stands matters as much as how strong it is.</p>
+    <p>Most attacks crash into the <strong>front</strong>. This is why your Vanguard belongs up front: while it
+      stands, it <em>draws</em> those blows onto itself, sparing the Kin behind. Put your fragile Strikers and
+      Mystics in the back, sheltered.</p>
+    <p>But the back is not a perfect hiding place. Some abilities are built to <strong>reach past the front
+      line</strong>, and some Kin are deadly <strong>snipers</strong>, always hunting the single most wounded
+      enemy to finish it off — slipping right past any guardian. Sweeping abilities hit <em>everyone</em> on the
+      enemy side at once. So a clever opponent can punish a back line you thought was safe — and you can do the
+      same to them.</p>
+    <p>Healers and shielders think differently: they tend the ally who needs it most — the one hurt worst
+      relative to their strength — rather than wasting care on someone barely scratched.</p>
+    <div class="note">The takeaway: shelter your damage-dealers behind a Vanguard, but never assume the back row
+      is untouchable.</div>
+
+    <h2>Echoes — the relics you equip</h2>
+    <p>Echoes are relics you slot onto your Kin to make them stronger. Each Kin can carry up to
+      <strong>three</strong>, so choose with intent.</p>
+    <p>Some echoes simply raise a Kin's numbers — more health, attack, defense, or sharper critical hits. Others
+      grant genuinely new behaviour in battle, and these are where teams get their character:</p>
+    <ul>
+      <li><strong>Lifesteal</strong> — heal the attacker for part of the damage it deals.</li>
+      <li><strong>Thorns</strong> — turn an attacker's own blow back on it.</li>
+      <li><strong>Regeneration</strong> — mend a little health every moment of the fight.</li>
+      <li><strong>Opening shield</strong> — start the battle already protected by a barrier.</li>
+      <li><strong>Piercing</strong> — cut through a portion of the enemy's defenses.</li>
+      <li><strong>Execute</strong> — strike far harder against badly wounded foes.</li>
+      <li><strong>First strike</strong> — hit harder on a Kin's very first action.</li>
+      <li><strong>Quickening</strong> — gather energy faster, so signatures fire sooner.</li>
+      <li><strong>Element focus</strong> — deal extra damage when you already hold the type advantage.</li>
+    </ul>
+    <p>Echoes also come in <strong>families</strong>. Equip two or three of a kind on the same Kin and they
+      harmonize, unlocking an extra bonus on top — a reward for building a Kin around a theme rather than
+      scattering odds and ends.</p>
+
+    <h2>Elements &amp; advantage</h2>
+    <p>Every Kin belongs to one of seven elements, and they answer to a wheel:</p>
+    <div class="wheel">
+      <p class="chain">Ember <span class="x">&rarr;</span> Bloom <span class="x">&rarr;</span> Gale
+        <span class="x">&rarr;</span> Stone <span class="x">&rarr;</span> Tide <span class="x">&rarr;</span>
+        Ember</p>
+      <p style="margin:0;color:var(--dim)">each is strong against the next in the ring &nbsp;·&nbsp;
+        <span class="pair">Gleam</span> and <span class="pair">Gloom</span> stand opposed, each fierce against
+        the other.</p>
+    </div>
+    <p>When a Kin strikes a foe it holds advantage over, it deals <strong>roughly a third more damage</strong>.
+      It's a meaningful edge for tilting a close fight your way — but it's deliberately gentle, so a battle is
+      never decided by type alone. Don't build your whole team to counter one opponent; build a team that's
+      strong on its own terms.</p>
+
+    <h3>Element synergy — the heart of a great team</h3>
+    <p>When you field <strong>several different Kin of the same element</strong>, they draw strength from one
+      another and all hit harder. The more <em>distinct</em> same-element Kin you bring, the bigger the boost —
+      a full core of four different Kin of one element grants a hefty attack bonus to them all.</p>
+    <p>Note the word <em>distinct</em>: it's the variety that matters, not duplicates. Four different Ember Kin
+      form a roaring core; four copies of the same one do not. As your collection grows, the path to power is to
+      deepen a single element into a true core — that shared bonus will outweigh almost anything else.</p>
+
+    <h2>A Warden's checklist for a strong team</h2>
+    <ol class="checklist">
+      <li><strong>Build an element core.</strong> Gather several <em>different</em> Kin of one element — your
+        biggest source of strength.</li>
+      <li><strong>Blend the classes.</strong> A Vanguard to hold the line, a Warder to keep them standing,
+        Strikers and Mystics to deal the damage.</li>
+      <li><strong>Mind the rows.</strong> Tanks in front; fragile damage-dealers in back — but remember the back
+        can still be reached.</li>
+      <li><strong>Equip with purpose.</strong> Three echoes per Kin; lean into a family for the harmony bonus,
+        and match relics to a Kin's role.</li>
+      <li><strong>Use matchups to tip close fights</strong> — a welcome edge, never your whole plan.</li>
+    </ol>
+
+    <p class="closer">Raise them well, Warden. The world is waiting to wake.</p>
+
+    <footer>
+      <a class="back" href="./index.html" style="margin-bottom:14px">&larr; Back to home</a><br>
+      © 2026 Thomas Hector · <a href="./privacy.html">Privacy</a> · <a href="./support.html">Support</a>
+    </footer>
+  </main>
+</body>
+</html>

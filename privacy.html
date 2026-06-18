@@ -36,10 +36,15 @@
   footer a{color:var(--dim)}
   .pill{display:inline-block;margin-top:18px;padding:7px 12px;border:1px solid var(--line);
         border-radius:999px;color:var(--dim);font-size:13px}
+  .back{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border:1px solid var(--line);
+        border-radius:12px;color:var(--text);text-decoration:none;background:var(--card);font-size:14px;
+        margin-bottom:24px;transition:border-color .15s,color .15s}
+  .back:hover{border-color:var(--cyan);color:#fff;text-decoration:none}
 </style>
 </head>
 <body>
   <main class="wrap">
+    <a class="back" href="./index.html">&larr; Back to home</a>
     <div class="brand">Wanderkin</div>
     <h1>Privacy Policy</h1>
     <p class="updated">Last updated: 15 June 2026</p>

@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Wanderkin</title>
-<meta name="description" content="Wanderkin — a step-powered creature collector. Walk the real world to awaken and raise your Kin." />
+<meta name="description" content="Wanderkin — a cozy, step-powered creature collector. The more you walk, the more your Kin collect. No purchases, no timers, no pressure." />
 <style>
   :root{--bg:#0e1116;--card:#161b22;--line:#222b36;--text:#e6edf3;--dim:#8a93a2;--gold:#e9d8a6;--cyan:#9be7ff}
   *{box-sizing:border-box} html,body{margin:0}
@@ -15,14 +15,15 @@
   .brand{font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-size:34px}
   .icon{width:116px;height:116px;border-radius:26px;display:block;margin:0 auto 18px;
     box-shadow:0 10px 40px rgba(155,231,255,.20);border:1px solid var(--line)}
-  .teaser{width:100%;max-width:340px;margin:30px auto 8px;border-radius:18px;border:1px solid var(--line);
+  .teaser{width:100%;max-width:340px;margin:28px auto 6px;border-radius:18px;border:1px solid var(--line);
     box-shadow:0 12px 48px rgba(0,0,0,.5);background:#000;display:block}
-  p.tag{color:var(--text);font-size:18px;margin:10px 0 6px}
-  p.sub{color:var(--dim);margin:0 0 34px}
-  .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  p.tag{color:var(--text);font-size:17px;margin:14px auto 0;max-width:30em}
+  .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}
   a.btn{padding:12px 20px;border:1px solid var(--line);border-radius:12px;color:var(--text);
-    text-decoration:none;background:var(--card)}
+    text-decoration:none;background:var(--card);transition:border-color .15s,color .15s}
   a.btn:hover{border-color:var(--cyan);color:#fff}
+  a.btn.primary{background:var(--gold);color:#10131a;border-color:var(--gold);font-weight:700}
+  a.btn.primary:hover{opacity:.92;color:#10131a}
   footer{margin-top:40px;color:var(--dim);font-size:13px}
 </style>
 </head>
@@ -30,12 +31,12 @@
   <main class="wrap">
     <img class="icon" src="./app-icon.png" alt="Wanderkin app icon" width="116" height="116" />
     <div class="brand">Wanderkin</div>
-    <p class="tag">Walk the real world. Wake the Kin.</p>
-    <p class="sub">A step-powered creature collector — your steps awaken and raise spirit-beasts, then send
-      them to push back the Hush.</p>
+    <p class="tag">The more you walk in the real world, the more your Kin collect — so a longer walk simply
+      means a richer session whenever you sit down to play. No purchases, no timers, no pressure to play.</p>
     <video class="teaser" src="./Wanderteaser.mp4" poster="./app-icon.png"
            autoplay muted loop playsinline controls preload="metadata"></video>
     <div class="links">
+      <a class="btn primary" href="./game-mechanics.html">Game Mechanics</a>
       <a class="btn" href="./privacy.html">Privacy Policy</a>
       <a class="btn" href="./support.html">Support</a>
     </div>
